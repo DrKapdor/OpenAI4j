@@ -12,6 +12,8 @@ import java.util.Optional;
 @Getter
 public class ImageResponse implements IOpenAiResponse {
 
+    /** Успешен ли запрос */
+    private boolean success;
     /** Дата генерации в формате Unix Time */
     private long creationDate;
     /** Список сгенерированных изображений */

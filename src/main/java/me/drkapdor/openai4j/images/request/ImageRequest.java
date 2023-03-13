@@ -23,6 +23,7 @@ public class ImageRequest implements IOpenAiRequest {
     /** Уникальный идентификатор инициатора запроса (опционально) */
     private String user;
 
+    @Override
     public JsonObject toJson() {
         JsonObject request = new JsonObject();
         request.addProperty("prompt", description);

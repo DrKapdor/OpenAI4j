@@ -13,6 +13,8 @@ import java.util.Optional;
 @Getter
 public class CompletionResponse implements IOpenAiResponse {
 
+    /** Успешен ли запрос */
+    private boolean success;
     /** Идентификатор возвращаемого ответа */
     private String id;
     /** Тип объекта */
