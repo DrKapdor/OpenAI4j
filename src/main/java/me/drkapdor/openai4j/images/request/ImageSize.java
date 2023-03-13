@@ -1,4 +1,4 @@
-package request;
+package me.drkapdor.openai4j.images.request;
 
 public enum ImageSize {
 

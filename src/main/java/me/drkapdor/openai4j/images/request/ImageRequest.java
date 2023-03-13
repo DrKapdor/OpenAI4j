@@ -1,4 +1,4 @@
-package request;
+package me.drkapdor.openai4j.images.request;
 
 import com.google.gson.JsonObject;
 import lombok.Builder;

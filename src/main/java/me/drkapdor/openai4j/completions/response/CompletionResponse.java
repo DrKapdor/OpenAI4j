@@ -1,4 +1,4 @@
-package completions.response;
+package me.drkapdor.openai4j.completions.response;
 
 import lombok.Builder;
 import lombok.Getter;

@@ -1,4 +1,4 @@
-package response;
+package me.drkapdor.openai4j.images.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

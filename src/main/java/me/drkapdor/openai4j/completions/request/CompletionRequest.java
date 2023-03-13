@@ -1,4 +1,4 @@
-package completions.request;
+package me.drkapdor.openai4j.completions.request;
 
 import com.google.gson.JsonObject;
 import lombok.Builder;
