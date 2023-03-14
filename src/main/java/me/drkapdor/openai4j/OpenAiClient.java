@@ -1,9 +1,6 @@
 package me.drkapdor.openai4j;
 
-import com.google.gson.JsonArray;
-import com.google.gson.JsonElement;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
+import com.google.gson.*;
 import com.google.gson.stream.JsonReader;
 import lombok.Builder;
 import me.drkapdor.openai4j.common.IOpenAiRequest;
@@ -141,17 +138,17 @@ public class OpenAiClient {
      * @return Подготовленный ответ в офрмате JSON
      */
     private Optional<JsonObject> prepareJsonResponse(IOpenAiRequest request, String url) {
-        HttpPost httpPost = new HttpPost(url);
-        httpPost.setConfig(RequestConfig.custom()
-                .setSocketTimeout(socketTimeout)
-                .setConnectTimeout(connectionTimeout)
-                .setConnectionRequestTimeout(requestTimeout)
-                .build());
-        httpPost.addHeader("Content-Type", ContentType.APPLICATION_JSON.getMimeType());
-        httpPost.addHeader("Authorization", "Bearer " + accessToken);
-        httpPost.setEntity(new StringEntity(request.toJson().toString(), ContentType.APPLICATION_JSON));
-        CloseableHttpClient httpClient = HttpClients.createDefault();
         try {
+            HttpPost httpPost = new HttpPost(url);
+            httpPost.setConfig(RequestConfig.custom()
+                    .setSocketTimeout(socketTimeout)
+                    .setConnectTimeout(connectionTimeout)
+                    .setConnectionRequestTimeout(requestTimeout)
+                    .build());
+            httpPost.addHeader("Content-Type", ContentType.APPLICATION_JSON.getMimeType());
+            httpPost.addHeader("Authorization", "Bearer " + accessToken);
+            httpPost.setEntity(new StringEntity(request.toJson().toString(), ContentType.APPLICATION_JSON));
+            CloseableHttpClient httpClient = HttpClients.createDefault();
             CloseableHttpResponse httpResponse = httpClient.execute(httpPost);
             if (httpResponse.getStatusLine().getStatusCode() == 200) {
                 InputStreamReader inputStreamReader = new InputStreamReader(httpResponse.getEntity().getContent());
@@ -162,7 +159,7 @@ public class OpenAiClient {
                 httpClient.close();
                 return Optional.empty();
             }
-        } catch (IOException e) {
+        } catch (IOException | RuntimeException e) {
             return Optional.empty();
         }
     }
